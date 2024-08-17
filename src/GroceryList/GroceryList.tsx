@@ -57,9 +57,9 @@ export const GroceryList = () => {
   console.log({ toBuyItems });
 
   return (
-    <>
-      <h1 style={{ textAlign: "center" }}>Grocery List</h1>
-      <p style={{ textAlign: "center" }}>
+    <div style={{ marginLeft: "20px" }}>
+      <h1>Grocery List</h1>
+      <p>
         <a href="/" style={styles.link}>
           Back to Home
         </a>
@@ -70,7 +70,7 @@ export const GroceryList = () => {
           height: "100vh",
           fontFamily: "Arial, sans-serif",
           flexDirection: "column",
-          alignItems: "center",
+          // alignItems: "center",
         }}
       >
         <form onSubmit={handleSubmit}>
@@ -91,15 +91,33 @@ export const GroceryList = () => {
           {toBuyItems.map(({ value, id, status }) => {
             if (status === "to-buy") {
               return (
-                <div key={id} style={{ display: "flex", textAlign: "left" }}>
+                <div
+                  key={id}
+                  style={{
+                    display: "flex",
+                    textAlign: "left",
+                    cursor: "pointer",
+                    padding: "3px",
+                  }}
+                >
                   <input
+                    style={{ cursor: "inherit" }}
                     type="checkbox"
-                    id={id.toString()}
+                    id={`item${id}`}
                     name={value}
                     value={item}
                     onChange={(e) => moveToBought({ value, id, status })}
                   />
-                  <label htmlFor={`item${id}`}>{value}</label>
+                  <label
+                    style={{
+                      cursor: "inherit",
+                      marginLeft: "2px",
+                      // fontSize: "16px",
+                    }}
+                    htmlFor={`item${id}`}
+                  >
+                    {value}
+                  </label>
                 </div>
               );
             }
@@ -113,16 +131,27 @@ export const GroceryList = () => {
           {boughtItems.map(({ value, id, status }) => {
             if (status === "bought") {
               return (
-                <div key={id} style={{ display: "flex", textAlign: "left" }}>
+                <div
+                  key={id}
+                  style={{
+                    display: "flex",
+                    textAlign: "left",
+                    cursor: "pointer",
+                    padding: "3px",
+                  }}
+                >
                   <input
+                    style={{ cursor: "inherit" }}
                     type="checkbox"
-                    id={id.toString()}
+                    id={`item${id}`}
                     name={value}
                     value={item}
                     checked
                     onChange={(e) => moveToToBuy({ value, id, status })}
                   />
-                  <label htmlFor={`item${id}`}>{value}</label>
+                  <label style={{ cursor: "inherit" }} htmlFor={`item${id}`}>
+                    {value}
+                  </label>
                 </div>
               );
             }
@@ -130,19 +159,11 @@ export const GroceryList = () => {
         </div>
         <br></br>
       </div>
-    </>
+    </div>
   );
 };
 
 const styles = {
-  container: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh",
-    fontFamily: "Arial, sans-serif",
-    flexDirection: "column",
-  },
   header: {
     fontSize: "2em",
     marginBottom: "1.5em",
