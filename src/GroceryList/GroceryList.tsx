@@ -54,6 +54,11 @@ export const GroceryList = () => {
     fetchItems();
   };
 
+  const removeItem = async (id: number) => {
+    await deleteData(id);
+    fetchItems();
+  };
+
   console.log({ toBuyItems });
 
   return (
@@ -112,12 +117,23 @@ export const GroceryList = () => {
                     style={{
                       cursor: "inherit",
                       marginLeft: "2px",
-                      // fontSize: "16px",
                     }}
                     htmlFor={`item${id}`}
                   >
                     {value}
                   </label>
+                  <button
+                    style={{
+                      marginLeft: "10px",
+                      backgroundColor: "transparent",
+                      border: "none",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => removeItem(id)}
+                  >
+                    X
+                  </button>
                 </div>
               );
             }
@@ -152,6 +168,18 @@ export const GroceryList = () => {
                   <label style={{ cursor: "inherit" }} htmlFor={`item${id}`}>
                     {value}
                   </label>
+                  <button
+                    style={{
+                      marginLeft: "10px",
+                      backgroundColor: "transparent",
+                      border: "none",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => removeItem(id)}
+                  >
+                    X
+                  </button>
                 </div>
               );
             }
